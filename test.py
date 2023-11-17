@@ -36,7 +36,7 @@ Pro75M1670 = SolidMotor(
 
 Pro75M1670.info()
 
-power_off_drag_completo = "data/calisto/powerOffDragCurve_completo.csv"
+power_off_drag_completo = "data/calisto/powerOffDragCurve.csv"
 
 calisto = Rocket(
     radius=127 / 2000,
