@@ -1693,7 +1693,7 @@ class Flight:
         # Compute aerodynamic forces and moments
         R1, R2, R3, M1, M2, M3 = 0, 0, 0, 0, 0, 0
 
-        ## Drag force
+        ## Drag forcepower_off_drag
         rho = self.env.density.get_value_opt(z)
         wind_velocity_x = self.env.wind_velocity_x.get_value_opt(z)
         wind_velocity_y = self.env.wind_velocity_y.get_value_opt(z)

@@ -16,6 +16,7 @@ from .aero_surface import (
 )
 from .components import Components
 from .parachute import Parachute
+from .airbrakes import Airbrakes
 
 
 class Rocket:
@@ -219,6 +220,9 @@ class Rocket:
 
         # Parachute data initialization
         self.parachutes = []
+
+        # Airbrakes data initialization
+        self.airbrakes = Components()
 
         # Aerodynamic data initialization
         self.aerodynamic_surfaces = Components()
@@ -986,6 +990,19 @@ class Rocket:
 
         # Return self
         return fin_set
+
+    def add_airbrakes(
+        self,
+        name,
+        cd,
+        trigger
+    ):
+        # Create airbrakes
+        self.airbrakes = Airbrakes(name, cd, trigger)
+
+        # Return self
+        return self.airbrakes
+        
 
     def add_parachute(
         self, name, cd_s, trigger, sampling_rate=100, lag=0, noise=(0, 0, 0)
