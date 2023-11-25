@@ -8,25 +8,38 @@ class Airbrakes:
     def __init__(
         self,
         name,
+        n,
+        area,
         cd,
-        trigger,
+        lookup_table,
     ):
         """Initializes Airbrakes class."""
 
         self.name = name
-        self.cd_s = cd
-        self.trigger = trigger
+        self.n = n
+        self.area = area
+        self.cd = cd
+        self.lookup_table = Function(
+            lookup_table,
+            "Altitudine attuale",
+            "Velocità attuale",
+            "Estensione aerofreno"
+            "Altitudine raggiunta con estensione aerofreno"
+            "linear",
+            "constant",
+            )
 
         # evaluate the trigger
         if callable(trigger):
             self.triggerfunc = trigger
         elif isinstance(trigger, (int, float)):
-            # trigger is interpreted as the absolute height at which the parachute will be ejected
+            # trigger is the lookup table in csv format
             def triggerfunc(p, h, y):
                 # p = pressure considering parachute noise signal
                 # h = height above ground level considering parachute noise signal
-                # y = [x, y, z, vx, vy, vz, e0, e1, e2, e3, w1, w2, w3]
-                return True if y[5] < 0 and h < trigger else False
+                # y = [x, y, z, vx, vy, vz, e0, e1, e2, e3, w1, w2, w3
+                if y[5] < 0 and h < trigger:
+                    return self.area, self.cd
 
             self.triggerfunc = triggerfunc
 

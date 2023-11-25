@@ -97,7 +97,7 @@ minerva_airbrakes = calisto.add_airbrakes(
     n=3,
     area=10,
     cd="data/minerva/cd_aerofreni.csv", # path to airbrakes cd csv file
-    trigger="data/minerva/lookup_table_minerva_test.csv", # path to airbrakes lookup table
+    lookup_table="data/minerva/lookup_table_minerva_test.csv", # path to airbrakes lookup table
 )
 
 #DA IMPLEMENTARE
