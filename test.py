@@ -35,7 +35,26 @@ Pro75M1670 = SolidMotor(
     coordinate_system_orientation="nozzle_to_combustion_chamber",
 )
 
-Pro75M1670.info()
+L2375 = SolidMotor(
+    thrust_source="data/motors/Cesaroni_4864L2375-P.eng",
+    dry_mass=1.839,
+    dry_inertia=(0.125, 0.125, 0.002), #incognita 
+    nozzle_radius= 33 / 1000, #incognita
+    grain_number=4,
+    grain_density=1815,   
+    grain_outer_radius=27 / 1000,
+    grain_initial_inner_radius=15 / 1000,
+    grain_initial_height=320 / 1000,
+    grain_separation=5 / 1000,
+    grains_center_of_mass_position=0.397,  #incognita
+    center_of_dry_mass_position=0.317,    #incognita
+    nozzle_position=0,  #incognita
+    burn_time=1.9,
+    throat_radius=11 / 1000,
+    coordinate_system_orientation="nozzle_to_combustion_chamber",
+)
+
+#Pro75M1670.info()
 
 power_off_drag_completo = "data/calisto/powerOffDragCurve.csv"
 
@@ -50,7 +69,8 @@ calisto = Rocket(
 )
 calisto.power_off_drag()
 
-calisto.add_motor(Pro75M1670, position=-1.255)
+#calisto.add_motor(Pro75M1670, position=-1.255)
+calisto.add_motor(L2375, position=-1.255)
 
 rail_buttons = calisto.set_rail_buttons(
     upper_button_position=0.0818,
@@ -98,8 +118,8 @@ minerva_airbrakes = calisto.add_airbrakes(
     name="minerva_airbrakes",
     n=3,
     area=1006.598/(10**6),
-    cd_0=1, # path to airbrakes cd csv file
-    cd_table="data/minerva/cd_aerofreni.csv", # per singolo petalo
+    cd_0=1, # per singolo petalo all'inizio
+    cd_table="data/minerva/cd_aerofreni.csv", # path to airbrakes cd csv file
     lookup_table="data/minerva/lookup_table_minerva_test.csv", # path to airbrakes lookup table
     trigger = 500
 )
