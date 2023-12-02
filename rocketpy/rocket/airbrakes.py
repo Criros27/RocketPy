@@ -9,6 +9,7 @@ class Airbrakes:
         self,
         name,
         n,
+        area, # per singolo petalo al 100% in m^2
         cd_0, # per singolo petalo all'inizio
         cd_table, # per singolo petalo
         lookup_table,
@@ -18,6 +19,7 @@ class Airbrakes:
 
         self.name = name
         self.n = n
+        self.area = area
         self.cd_0 = cd_0
         self.cd_table = Function(
             cd_table,

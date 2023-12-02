@@ -1277,8 +1277,8 @@ class Flight:
         thrust = self.rocket.motor.thrust.get_value_opt(t)
         rho = self.env.density.get_value_opt(z)
 
-        R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area) * (drag_coeff+(self.airbrakes.n*self.airbrakes.cd_))
-        #R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.n*self.airbrakes.area)) * (drag_coeff+self.airbrakes.cd)
+        #R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area) * (drag_coeff+(self.airbrakes.n*self.airbrakes.cd_0))
+        R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.n*self.airbrakes.area)) * (drag_coeff+(self.airbrakes.n*self.airbrakes.cd_0))
 
         # Calculate Linear acceleration
         a3 = (R3 + thrust) / M - (

@@ -23,3 +23,7 @@ rocket.py
 airbrakes.py
 
 25 - def triggerfunc()
+
+-----------------------------------------------
+
+Apogee Altitude: 4783.910 m (ASL) | 3312.444 m (AGL)
