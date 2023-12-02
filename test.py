@@ -93,6 +93,14 @@ drogue = calisto.add_parachute(
     noise=(0, 8.3, 0.5),
 )
 
+airbrakes = calisto.add_airbrakes(
+    airbrakes_cd = 0,
+    airbrakes_area = 0,
+    lookup_table = "lookuptable",
+    n = 4,
+    noise = (0, 0, 0)
+)
+
 calisto.plots.static_margin()
 
 test_flight = Flight(
@@ -104,3 +112,4 @@ test_flight.speed.plot(0, test_flight.apogee_time)
 test_flight.speed.source
 
 #test_flight.all_info()
+print('\033[91m' + airbrakes.airbrakes_cd +'\033[0m')

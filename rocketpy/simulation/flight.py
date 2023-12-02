@@ -580,6 +580,7 @@ class Flight:
         if self.rail_length <= 0:
             raise ValueError("Rail length must be a positive value.")
         self.parachutes = self.rocket.parachutes[:]
+        self.airbrakes = self.rocket.airbrakes
         self.inclination = inclination
         self.heading = heading
         self.max_time = max_time
@@ -1266,11 +1267,17 @@ class Flight:
         ) ** 0.5
         free_stream_mach = free_stream_speed / self.env.speed_of_sound.get_value_opt(z)
         drag_coeff = self.rocket.power_on_drag.get_value_opt(free_stream_mach)
-
+        
+        # Check if airbrakes are needed, if so modify airbrakes area and cd
+        """
+        if self.airbrakes.trigger == True:
+            self.airbrakes.airbrakes_area_update()
+            self.airbrakes.airbrakes_cd_updated()
+        """
         # Calculate Forces
         thrust = self.rocket.motor.thrust.get_value_opt(t)
         rho = self.env.density.get_value_opt(z)
-        R3 = -0.5 * rho * (free_stream_speed**2) * self.rocket.area * (drag_coeff)
+        R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area + self.airbrakes.airbrakes_area) * (drag_coeff + self.airbrakes.airbrakes_cd)
 
         # Calculate Linear acceleration
         a3 = (R3 + thrust) / M - (

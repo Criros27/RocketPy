@@ -16,6 +16,7 @@ from .aero_surface import (
 )
 from .components import Components
 from .parachute import Parachute
+from .airbrakes import Airbrakes
 
 
 class Rocket:
@@ -219,6 +220,9 @@ class Rocket:
 
         # Parachute data initialization
         self.parachutes = []
+
+        # Airbrakes data initialization
+        self.airbrakes = Airbrakes()
 
         # Aerodynamic data initialization
         self.aerodynamic_surfaces = Components()
@@ -1059,6 +1063,15 @@ class Rocket:
 
         # Return self
         return self.parachutes[-1]
+
+    def add_airbrakes(
+        self, airbrakes_cd, airbrakes_area, lookup_table, n, noise=(0, 0, 0)
+    ):
+        airbrakes = Airbrakes(airbrakes_cd, airbrakes_area, lookup_table, n, noise)
+
+        return airbrakes
+
+
 
     def set_rail_buttons(
         self, upper_button_position, lower_button_position, angular_position=45
