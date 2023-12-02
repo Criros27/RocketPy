@@ -1426,8 +1426,14 @@ class Flight:
             drag_coeff = self.rocket.power_on_drag.get_value_opt(free_stream_mach)
         else:
             drag_coeff = self.rocket.power_off_drag.get_value_opt(free_stream_mach)
+        
+        # WORK IN PROGRESS - CONTROLLO SULL'AEROFRENO
+        # # Check if airbrakes are needed, if so modify airbrakes cd
+        # if self.airbrakes.trigger == True: # quando arriva a es. 500m
+        #     self.airbrakes.cd = self.airbrakes.cd # aziona aerofreno staticamente
         rho = self.env.density.get_value_opt(z)
-        R3 = -0.5 * rho * (free_stream_speed**2) * self.rocket.area * (drag_coeff)
+        R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.n*self.airbrakes.area)) * (drag_coeff+(self.airbrakes.area*self.airbrakes.n))
+        
         # R3 += self.__computeDragForce(z, Vector(vx, vy, vz))
         # Off center moment
         M1 += self.rocket.cp_eccentricity_y * R3
@@ -1712,7 +1718,7 @@ class Flight:
             drag_coeff = self.rocket.power_on_drag.get_value_opt(free_stream_mach)
         else:
             drag_coeff = self.rocket.power_off_drag.get_value_opt(free_stream_mach)
-        R3 += -0.5 * rho * (free_stream_speed**2) * self.rocket.area * (drag_coeff)
+        R3 += -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.area*self.airbrakes.n)) * (drag_coeff+(self.airbrakes.cd_0*self.airbrakes.n))
 
         ## Off center moment
         M1 += self.rocket.cp_eccentricity_y * R3

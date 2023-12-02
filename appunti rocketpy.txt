@@ -1,12 +1,13 @@
+
 flight.py
 
 2800 - Go through each time step and calculate forces and atmospheric values
 
-1100 - Initialize flight state variables.
+1720 in udot_generalized - R3 += -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.area*self.airbrakes.n)) * (drag_coeff+(self.airbrakes.cd_0*self.airbrakes.n))
 
-1271 - Check if airbrakes are needed, if so modify airbrakes area and cd
+1432 in udot - R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.n*self.airbrakes.area)) * (drag_coeff+(self.airbrakes.area*self.airbrakes.n))
 
-1278 - R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.n*self.airbrakes.area)) * (drag_coeff)
+1278 in udot_rail1 - R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.n*self.airbrakes.area)) * (drag_coeff)
 
 583 - self.airbrakes = self.rocket.airbrakes
 
@@ -17,13 +18,8 @@ rocket.py
 225 - self.airbrakes = Function()
 
 991 - def add_airbrakes() 
- 
------------------------------------------------
-
-airbrakes.py
-
-25 - def triggerfunc()
 
 -----------------------------------------------
 
-Apogee Altitude: 4783.910 m (ASL) | 3312.444 m (AGL)
+Apogee Altitude: 4547.166 m (ASL) | 3075.700 m (AGL)
+Apogee Altitude: 2510.603 m (ASL) | 1039.137 m (AGL)
