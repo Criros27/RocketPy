@@ -73,7 +73,7 @@ fin_set = Minerva.add_trapezoidal_fins(
 )
 
 tail = Minerva.add_tail(
-    top_radius=0.0102, bottom_radius=0.008, length=0.0436, position=-1.194656
+    top_radius=0.0102, bottom_radius=0.008, length=0.0436, position=2.5464
 )       #OR
 
 main = Minerva.add_parachute(

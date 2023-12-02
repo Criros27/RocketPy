@@ -116,4 +116,4 @@ test_flight.speed.plot(0, test_flight.apogee_time)
 test_flight.speed.source
 
 # Estraggo tutti i dati della simulazione
-# test_flight.all_info()
+test_flight.all_info()
