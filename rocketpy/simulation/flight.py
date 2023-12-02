@@ -1269,16 +1269,16 @@ class Flight:
         drag_coeff = self.rocket.power_on_drag.get_value_opt(free_stream_mach)
 
         # WORK IN PROGRESS
-        # Check if airbrakes are needed, if so modify airbrakes area and cd
-        if self.airbrakes.trigger == True:
-            self.airbrakes.area = airbrakes_area_updated
+        # # Check if airbrakes are needed, if so modify airbrakes cd
+        # if self.airbrakes.trigger == True: # quando arriva a es. 500m
+        #     self.airbrakes.cd = self.airbrakes.cd # aziona aerofreno staticamente
 
         # Calculate Forces
         thrust = self.rocket.motor.thrust.get_value_opt(t)
         rho = self.env.density.get_value_opt(z)
 
-        R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.n*self.airbrakes.area)) * (drag_coeff+self.airbrakes.cd)
-        #R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area) * (drag_coeff)
+        R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area) * (drag_coeff+(self.airbrakes.n*self.airbrakes.cd_))
+        #R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.n*self.airbrakes.area)) * (drag_coeff+self.airbrakes.cd)
 
         # Calculate Linear acceleration
         a3 = (R3 + thrust) / M - (

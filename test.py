@@ -1,4 +1,6 @@
+
 from rocketpy import Environment, SolidMotor, Rocket, Flight
+from rocketpy.plots.flight_plots import _FlightPlots
 
 env = Environment(latitude=32.990254, longitude=-106.974998, elevation=1400)
 
@@ -92,13 +94,14 @@ drogue = calisto.add_parachute(
     noise=(0, 8.3, 0.5),
 )
 
-# minerva_airbrakes = calisto.add_airbrakes(
-#     name="minerva_airbrakes",
-#     n=3,
-#     area=10,
-#     cd="data/minerva/cd_aerofreni.csv", # path to airbrakes cd csv file
-#     lookup_table="data/minerva/lookup_table_minerva_test.csv", # path to airbrakes lookup table
-# )
+minerva_airbrakes = calisto.add_airbrakes(
+    name="minerva_airbrakes",
+    n=3,
+    cd_0=0, # path to airbrakes cd csv file
+    cd_table="data/minerva/cd_aerofreni.csv", # per singolo petalo
+    lookup_table="data/minerva/lookup_table_minerva_test.csv", # path to airbrakes lookup table
+    trigger = 500
+)
 
 #DA IMPLEMENTARE
 #minerva_airbrakes.all_info()
@@ -111,9 +114,12 @@ test_flight = Flight(
     rocket=calisto, environment=env, rail_length=5.2, inclination=85, heading=0
     )
 
-test_flight.speed.plot(0, test_flight.apogee_time)
+# Plotto la traiettoria
+_FlightPlots.flight
 
+# Velocità
+test_flight.speed.plot(0, test_flight.apogee_time)
 test_flight.speed.source
 
 # Estraggo tutti i dati della simulazione
-test_flight.all_info()
+#test_flight.all_info()
