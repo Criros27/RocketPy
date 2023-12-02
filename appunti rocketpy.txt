@@ -21,5 +21,6 @@ rocket.py
 
 -----------------------------------------------
 
-Apogee Altitude: 4547.166 m (ASL) | 3075.700 m (AGL)
-Apogee Altitude: 2510.603 m (ASL) | 1039.137 m (AGL)
+Apogee Altitude: 4787.062 m (ASL) | 3315.596 m (AGL) - cd=0
+Apogee Altitude: 3108.116 m (ASL) | 1636.650 m (AGL) - cd=0.5
+Apogee Altitude: 2648.621 m (ASL) | 1177.155 m (AGL) - cd=1

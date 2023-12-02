@@ -996,13 +996,11 @@ class Rocket:
         name,
         n,
         area, # per singolo petalo al 100% in m^2
-        cd_0, # per singolo petalo all'inizio
         cd_table, # per singolo petalo
         lookup_table,
-        trigger
     ):
         # Create airbrakes
-        self.airbrakes = Airbrakes(name, n, area, cd_0, cd_table, lookup_table, trigger)
+        self.airbrakes = Airbrakes(name, n, area, cd_table, lookup_table)
 
         # Return self
         return self.airbrakes

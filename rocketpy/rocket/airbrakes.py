@@ -10,17 +10,14 @@ class Airbrakes:
         name,
         n,
         area, # per singolo petalo al 100% in m^2
-        cd_0, # per singolo petalo all'inizio
         cd_table, # per singolo petalo
-        lookup_table,
-        trigger
+        lookup_table
     ):
         """Initializes Airbrakes class."""
 
         self.name = name
         self.n = n
         self.area = area
-        self.cd_0 = cd_0
         self.cd_table = Function(
             cd_table,
             "Mach",
@@ -39,22 +36,17 @@ class Airbrakes:
             "linear",
             "constant",
             )
-        self.trigger = trigger
 
-        # evaluate the trigger
-        if callable(trigger):
-            self.triggerfunc = trigger
-        elif isinstance(trigger, (int, float)):
-            # trigger is interpreted as the absolute height at which the parachute will be ejected
-            def triggerfunc(p, h, y):
-                # p = pressure considering parachute noise signal
-                # h = height above ground level considering parachute noise signal
-                # y = [x, y, z, vx, vy, vz, e0, e1, e2, e3, w1, w2, w3]
-                return True if y[5] < 0 and h < trigger else False
+    def airbrakes_trigger(self, current_velocity, current_altitude, target_altitude): # da rivedere
 
-            self.triggerfunc = triggerfunc
-            
-        return None
+        """
+        Returns the airbrakes total cd given velocity and altitude of the rocket
+        """
+
+        cd = 0.5 # test, poi va preso dalla lookup table
+        current_airbrakes_cd = 3*cd # ho messo 3 perchè self.n da "'Airbrakes' has no attribute 'n'"
+
+        return current_airbrakes_cd
 
     def __str__(self):
         """Returns a string representation of the Airbrakes class.

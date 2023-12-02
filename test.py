@@ -12,9 +12,10 @@ env.set_date(
     (tomorrow.year, tomorrow.month, tomorrow.day, 12)
 )  # Hour given in UTC time
 
-env.set_atmospheric_model(type="Forecast", file="GFS")
+env.set_atmospheric_model(type="Forecast", file="GFS") # richiede connessione
+#env.set_atmospheric_model(type="standard_atmosphere", file="GFS") # non richiede connessione
 
-env.info()
+#env.info()
 
 Pro75M1670 = SolidMotor(
     thrust_source="data/motors/Cesaroni_M1670.eng",
@@ -67,7 +68,7 @@ calisto = Rocket(
     center_of_mass_without_motor=0,
     coordinate_system_orientation="tail_to_nose",
 )
-calisto.power_off_drag()
+#calisto.power_off_drag()
 
 calisto.add_motor(Pro75M1670, position=-1.255)
 #calisto.add_motor(L2375, position=-1.255)
@@ -115,13 +116,11 @@ drogue = calisto.add_parachute(
 )
 
 minerva_airbrakes = calisto.add_airbrakes(
-    name="minerva_airbrakes",
+    name="minerva_test_airbrakes",
     n=3,
     area=1006.598/(10**6),
-    cd_0=1, # per singolo petalo all'inizio
     cd_table="data/minerva/cd_aerofreni.csv", # path to airbrakes cd csv file
     lookup_table="data/minerva/lookup_table_minerva_test.csv", # path to airbrakes lookup table
-    trigger = 500
 )
 
 #DA IMPLEMENTARE
@@ -129,15 +128,15 @@ minerva_airbrakes = calisto.add_airbrakes(
 
 ###
 
-calisto.plots.static_margin()
+#calisto.plots.static_margin()
 
 test_flight = Flight(
     rocket=calisto, environment=env, rail_length=5.2, inclination=85, heading=0
     )
 
 # Velocità
-test_flight.speed.plot(0, test_flight.apogee_time)
-test_flight.speed.source
+# test_flight.speed.plot(0, test_flight.apogee_time)
+# test_flight.speed.source
 
 # Estraggo tutti i dati della simulazione
 #test_flight.all_info()
