@@ -69,8 +69,8 @@ calisto = Rocket(
 )
 calisto.power_off_drag()
 
-#calisto.add_motor(Pro75M1670, position=-1.255)
-calisto.add_motor(L2375, position=-1.255)
+calisto.add_motor(Pro75M1670, position=-1.255)
+#calisto.add_motor(L2375, position=-1.255)
 
 rail_buttons = calisto.set_rail_buttons(
     upper_button_position=0.0818,
@@ -83,7 +83,7 @@ nose_cone = calisto.add_nose(
 )
 
 fin_set = calisto.add_trapezoidal_fins(
-    n=4,
+    n=3,
     root_chord=0.120,
     tip_chord=0.060,
     span=0.110,
