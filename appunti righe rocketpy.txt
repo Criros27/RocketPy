@@ -1,0 +1,25 @@
+flight.py
+
+2800 - Go through each time step and calculate forces and atmospheric values
+
+1100 - Initialize flight state variables.
+
+1271 - Check if airbrakes are needed, if so modify airbrakes area and cd
+
+1278 - R3 = -0.5 * rho * (free_stream_speed**2) * (self.rocket.area+(self.airbrakes.n*self.airbrakes.area)) * (drag_coeff)
+
+583 - self.airbrakes = self.rocket.airbrakes
+
+-----------------------------------------------
+
+rocket.py
+
+225 - self.airbrakes = Function()
+
+991 - def add_airbrakes() 
+ 
+-----------------------------------------------
+
+airbrakes.py
+
+25 - def triggerfunc()
