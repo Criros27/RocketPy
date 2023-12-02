@@ -221,8 +221,8 @@ class Rocket:
         # Parachute data initialization
         self.parachutes = []
 
-        # Airbrakes data initialization
-        self.airbrakes = Components()
+        # # Airbrakes data initialization
+        # self.airbrakes = Components()
 
         # Aerodynamic data initialization
         self.aerodynamic_surfaces = Components()
@@ -991,17 +991,17 @@ class Rocket:
         # Return self
         return fin_set
 
-    def add_airbrakes(
-        self,
-        name,
-        cd,
-        trigger
-    ):
-        # Create airbrakes
-        self.airbrakes = Airbrakes(name, cd, trigger)
+    # def add_airbrakes(
+    #     self,
+    #     name,
+    #     cd,
+    #     trigger
+    # ):
+    #     # Create airbrakes
+    #     self.airbrakes = Airbrakes(name, cd, trigger)
 
-        # Return self
-        return self.airbrakes
+    #     # Return self
+    #     return self.airbrakes
         
 
     def add_parachute(
