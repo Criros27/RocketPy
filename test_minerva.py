@@ -118,7 +118,7 @@ drogue = Minerva.add_parachute(
 Minerva.plots.static_margin()
 
 test_flight = Flight(
-    rocket=Minerva, environment=env, rail_length=5.2, inclination=85, heading=0
+    rocket=Minerva, environment=env, rail_length=5, inclination=85, heading=0
     )
 
 test_flight.speed.plot(0, test_flight.apogee_time)
