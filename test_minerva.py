@@ -20,12 +20,12 @@ L2375 = SolidMotor(
     dry_mass=1.839,
     dry_inertia=(0.125, 0.125, 0.002), #incognita 
     nozzle_radius= 33 / 1000, #incognita
-    grain_number=4,
+    grain_number=4,     #I
     grain_density=1815,   
     grain_outer_radius=27 / 1000,
     grain_initial_inner_radius=15 / 1000,
     grain_initial_height=320 / 1000,
-    grain_separation=5 / 1000,
+    grain_separation=5 / 1000,      #I
     grains_center_of_mass_position=0.397,  #incognita
     center_of_dry_mass_position=0.317,    #incognita
     nozzle_position=0,  #incognita
@@ -44,8 +44,8 @@ Minerva = Rocket(
     inertia=(5.138, 5.138, 0.022),  #OR
     power_off_drag=power_off_drag_completo,
     power_on_drag="data/calisto/powerOnDragCurve.csv",
-    center_of_mass_without_motor=1.47,  #OR
-    coordinate_system_orientation="nose_to_tail",
+    center_of_mass_without_motor=0,  #OR
+    coordinate_system_orientation="tail_to_nose",
 )
 Minerva.power_off_drag()
 
@@ -59,7 +59,7 @@ rail_buttons = Minerva.set_rail_buttons(
 )
 
 nose_cone = Minerva.add_nose(
-    length=0.38, kind="lvhaack", position=0  #OR
+    length=0.38, kind="lvhaack", position=1.465  #OR
 )
 
 fin_set = Minerva.add_trapezoidal_fins(
@@ -67,7 +67,7 @@ fin_set = Minerva.add_trapezoidal_fins(
     root_chord=0.36,    #OR
     tip_chord=0.070,    #OR
     span=0.120,     #OR
-    position=-2.85,     #OR
+    position=-0.53,     #OR
     cant_angle=0.5,
     #airfoil=("data/calisto/NACA0012-radians.csv","radians"),
 )
@@ -104,4 +104,4 @@ test_flight.speed.plot(0, test_flight.apogee_time)
 
 test_flight.speed.source
 
-test_flight.all_info()
+#test_flight.all_info()
