@@ -15,45 +15,47 @@ env.set_atmospheric_model(type="Forecast", file="GFS")
 
 env.info()
 
-# L2375 = SolidMotor(
-#     thrust_source="data/motors/Cesaroni_4864L2375-P.eng",
-#     dry_mass=1.839,
-#     dry_inertia=(0.125, 0.125, 0.002), #incognita 
-#     nozzle_radius= 33 / 1000, #incognita
-#     grain_number=3,     #I = Internet
-#     grain_density=1815,   
-#     grain_outer_radius=27 / 1000,
-#     grain_initial_inner_radius=15 / 1000,
-#     grain_initial_height=320 / 1000,
-#     grain_separation=5 / 1000,      #I
-#     grains_center_of_mass_position=0.397,  #incognita
-#     center_of_dry_mass_position=0.317,    #incognita
-#     nozzle_position=0,  #incognita
-#     burn_time=1.9,
-#     throat_radius=11 / 1000,
-#     coordinate_system_orientation="nozzle_to_combustion_chamber",
-# )
+#L2375 = SolidMotor(
+#    thrust_source="data/motors/Cesaroni_4864L2375-P.eng",
+#    dry_mass=1.839,
+#    dry_inertia=(0.125, 0.125, 0.002), #incognita 
+#    nozzle_radius= 33 / 1000, #incognita
+#    grain_number=3,     #I
+#    grain_density=1815,   
+#    grain_outer_radius=27 / 1000,
+#    grain_initial_inner_radius=15 / 1000,
+#    grain_initial_height=320 / 1000,
+#    grain_separation=5 / 1000,      #I
+#    grains_center_of_mass_position=0.397,  #incognita
+#    center_of_dry_mass_position=0.317,    #incognita
+#    nozzle_position=0,  #incognita
+#    burn_time=1.9,
+#    throat_radius=11 / 1000,
+#    coordinate_system_orientation="nozzle_to_combustion_chamber",
+#)
+
+#L2375.info()
 
 L1350 = SolidMotor(
     thrust_source="data/motors/Cesaroni_4263L1350-P.eng",
-    dry_mass=1.546,
+    dry_mass=1.839,
     dry_inertia=(0.125, 0.125, 0.002), #incognita 
     nozzle_radius= 33 / 1000, #incognita
-    grain_number=3,     #I = Internet
+    grain_number=3,     #I
     grain_density=1815,   
     grain_outer_radius=75 / 2000,
-    grain_initial_inner_radius=15 / 1000,
-    grain_initial_height=490 / 3000,
-    grain_separation=5 / 1000,      #I
-    grains_center_of_mass_position=0.245,   #incognita
-    center_of_dry_mass_position=0.315,   #incognita
-    nozzle_position=0,
+    grain_initial_inner_radius=15 / 2000,
+    grain_initial_height=490 / 3000, #OR
+    grain_separation=5 / 1000,      #Incognita
+    grains_center_of_mass_position=0.397,  #OR
+    center_of_dry_mass_position=0.317,    #OR
+    nozzle_position=0,  #OR
     burn_time=3.28,
     throat_radius=11 / 1000,
     coordinate_system_orientation="nozzle_to_combustion_chamber",
 )
 
-L1350.info()
+L2375.info()
 
 power_off_drag_completo = "data/calisto/powerOffDragCurve.csv"
 
@@ -68,7 +70,7 @@ Minerva = Rocket(
 )
 Minerva.power_off_drag()
 
-Minerva.add_motor(L1350, position=2.22795 )
+Minerva.add_motor(L2375, position=2.22795 )
 
 #da chiedere 
 rail_buttons = Minerva.set_rail_buttons(
@@ -123,5 +125,4 @@ test_flight.speed.plot(0, test_flight.apogee_time)
 
 test_flight.speed.source
 
-#test_flight.all_info()
-test_flight.info()
+test_flight.all_info()
