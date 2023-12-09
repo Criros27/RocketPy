@@ -70,7 +70,7 @@ Minerva = Rocket(
 )
 Minerva.power_off_drag()
 
-Minerva.add_motor(L1350, position=2.22795 )
+Minerva.add_motor(L1350, position=-1.02 )
 
 #da chiedere 
 rail_buttons = Minerva.set_rail_buttons(
@@ -80,7 +80,7 @@ rail_buttons = Minerva.set_rail_buttons(
 )
 
 nose_cone = Minerva.add_nose(
-    length=0.38, kind="lvhaack", position=1.465  #OR
+    length=0.38, kind="lvhaack", position=1.38  #OR
 )
 
 fin_set = Minerva.add_trapezoidal_fins(
@@ -94,7 +94,7 @@ fin_set = Minerva.add_trapezoidal_fins(
 )
 
 tail = Minerva.add_tail(
-    top_radius=0.0102, bottom_radius=0.008, length=0.0436, position=-1.0825
+    top_radius=0.0102, bottom_radius=0.008, length=0.0436, position=-0.9764
 )       #OR
 
 main = Minerva.add_parachute(
