@@ -125,4 +125,5 @@ test_flight.speed.plot(0, test_flight.apogee_time)
 
 test_flight.speed.source
 
-test_flight.all_info()
+#test_flight.all_info()
+test_flight.info()
