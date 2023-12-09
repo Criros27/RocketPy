@@ -16,7 +16,7 @@ env.set_atmospheric_model(type="Forecast", file="GFS")
 env.info()
 
 L2375 = SolidMotor(
-    thrust_source="data/motors/Cesaroni_4864L2375-P.eng",
+    thrust_source="data/motors/Cesaroni_4263L1350-P.eng",
     dry_mass=1.839,
     dry_inertia=(0.125, 0.125, 0.002), #incognita 
     nozzle_radius= 33 / 1000, #incognita
