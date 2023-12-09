@@ -100,9 +100,9 @@ tail = Minerva.add_tail(
 main = Minerva.add_parachute(
     name="main",
     cd_s=1.4,   #OR
-    trigger=800,      # ejection altitude in meters  
+    trigger=400,      # ejection altitude in meters  
     sampling_rate= 105,
-    lag=1.5,
+    lag=2,
     noise=(0, 8.3, 0.5),
 )
 
@@ -111,7 +111,7 @@ drogue = Minerva.add_parachute(
     cd_s=0.80,   #OR
     trigger="apogee",  # ejection at apogee
     sampling_rate=105,
-    lag=1.5,
+    lag=2,
     noise=(0, 8.3, 0.5),
 )
 
