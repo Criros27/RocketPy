@@ -38,7 +38,7 @@ env.info()
 
 L1350 = SolidMotor(
     thrust_source="data/motors/Cesaroni_4263L1350-P.eng",
-    dry_mass=1.839,
+    dry_mass=1.546,
     dry_inertia=(0.125, 0.125, 0.002), #incognita 
     nozzle_radius= 33 / 1000, #incognita
     grain_number=3,     #I
@@ -50,7 +50,7 @@ L1350 = SolidMotor(
     grains_center_of_mass_position=0.397,  #OR
     center_of_dry_mass_position=0.317,    #OR
     nozzle_position=0,  #OR
-    burn_time=3.28,
+    burn_time=3.28, #I
     throat_radius=11 / 1000,
     coordinate_system_orientation="nozzle_to_combustion_chamber",
 )
@@ -61,8 +61,8 @@ power_off_drag_completo = "data/calisto/powerOffDragCurve.csv"
 
 Minerva = Rocket(
     radius=102 / 2000, #OR
-    mass=7.718,    #OR
-    inertia=(5.138, 5.138, 0.022),  #OR
+    mass=7.227,    #OR
+    inertia=(4.078, 4.078, 0.015),  #OR
     power_off_drag=power_off_drag_completo,
     power_on_drag="data/calisto/powerOnDragCurve.csv",
     center_of_mass_without_motor=0,  #OR
