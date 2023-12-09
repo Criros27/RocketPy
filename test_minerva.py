@@ -85,11 +85,11 @@ nose_cone = Minerva.add_nose(
 
 fin_set = Minerva.add_trapezoidal_fins(
     n=4,
-    root_chord=0.36,    #OR
-    tip_chord=0.070,    #OR
-    span=0.120,     #OR
-    position=-0.53,     #OR
-    cant_angle=0.5,
+    root_chord=0.18,    #OR
+    tip_chord=0.0275,    #OR
+    span=0.105,     #OR
+    position=-0.79,     #OR
+    cant_angle=0,
     #airfoil=("data/calisto/NACA0012-radians.csv","radians"),
 )
 
