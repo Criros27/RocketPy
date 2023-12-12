@@ -1,0 +1,85 @@
+import csv
+import numpy as np
+from scipy.interpolate import interp1d
+import matplotlib.pyplot as plt
+
+
+# dati modificabili
+col_Mach = 1
+col_velocity = 2
+col_Drag = 3
+col_cd = 4
+data_rows = (7,18) #inserire le righe dei dati da prendere dal file csv
+original_data_file_name = "CFD_Minerva.csv"
+saving_file_name = "Mach_cd_Minerva.csv"
+interpolation_kind = "quadratic"
+
+# inizializzazione liste
+array_csv = []
+Mach = []
+velocity = []
+Drag = []
+cd = []
+
+with open(original_data_file_name) as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+        
+    for row in csv_reader:
+        array_csv.append(row)
+
+    array_data = [array_csv[i] for i in range(data_rows[0]-1,data_rows[1])]
+
+   
+for i in range(0,len(array_data)):
+
+    # replacement , with . to float the strings
+    for value in range(0,len(array_data[i])):
+        array_data[i][value] = array_data[i][value].replace(",",".")
+        
+    Mach.append(float(array_data[i][col_Mach-1]))
+    velocity.append(float(array_data[i][col_velocity-1]))
+    print(array_data[i])
+    Drag.append(float(array_data[i][col_Drag-1]))
+    cd.append(float(array_data[i][col_cd-1]))
+
+
+
+
+# Crea una funzione di interpolazione lineare
+interpolatore = interp1d(Mach, cd, kind=interpolation_kind)
+
+Mach_interpolated = np.linspace(0.1,1.2,num=200) # 200 nodi
+cd_interpolated = np.zeros(len(Mach_interpolated))
+
+for i in range(0,len(Mach_interpolated)):
+    print(f"iterazione numero {i+1}")
+    print(Mach_interpolated[i])
+    print(interpolatore(Mach_interpolated[i]))
+    cd_interpolated[i] = interpolatore(Mach_interpolated[i])
+
+
+
+
+# Dati da scrivere nel file CSV
+dati = [
+    Mach_interpolated,
+    cd_interpolated
+]
+
+# Nome del file CSV
+file_name = saving_file_name
+
+# Scrivi i dati nel file CSV
+with open(file_name, mode='w', newline='') as file_csv:
+    writer = csv.writer(file_csv)
+    writer.writerows(zip(*dati))
+
+
+#plots
+
+plt.plot(Mach,cd)
+plt.show()
+
+plt.plot(Mach_interpolated,cd_interpolated)
+plt.show()
+
