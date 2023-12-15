@@ -1,7 +1,7 @@
 
 from rocketpy import Environment, SolidMotor, Rocket, Flight
 
-env = Environment(latitude=32.990254, longitude=-106.974998, elevation=1400)
+env = Environment(latitude=43.63871944444445, longitude=-116.2413513485235, elevation=143)
 
 import datetime
 
@@ -57,14 +57,16 @@ L1350 = SolidMotor(
 
 L1350.info()
 
-power_off_drag_completo = "data/calisto/powerOffDragCurve.csv"
+#power_on_drag = "data/calisto/powerOnDragCurve.csv"
+#power_off_drag = "data/calisto/powerOffDragCurve.csv"
+drag_minerva = "data/minerva/Mach_cd_Minerva.csv"
 
 Minerva = Rocket(
     radius=102 / 2000, #OR
     mass=7.227,    #OR
     inertia=(4.078, 4.078, 0.015),  #OR
-    power_off_drag=power_off_drag_completo,
-    power_on_drag="data/calisto/powerOnDragCurve.csv",
+    power_off_drag=drag_minerva,
+    power_on_drag=drag_minerva,
     center_of_mass_without_motor=0,  #OR
     coordinate_system_orientation="tail_to_nose",
 )

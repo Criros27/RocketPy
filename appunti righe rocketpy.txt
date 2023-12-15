@@ -23,3 +23,10 @@ rocket.py
 airbrakes.py
 
 25 - def triggerfunc()
+
+-----------------------------------------------
+
+throat radius = 11 - grain density = 1815 - Apogee Altitude: 5207.380 m (ASL) | 3735.914 m (AGL)
+thorat radius = 11 - grain density = 1615 - Apogee Altitude: 5262.278 m (ASL) | 3790.812 m (AGL)
+thorat radius = 20 - grain density = 1615 - Apogee Altitude: 5262.278 m (ASL) | 3790.812 m (AGL)
+poi uguale ma nozzle_radius = 50/1000, grain internal radius 25 - Apogee Altitude: 5295.342 m (ASL) | 3823.876 m (AGL)
