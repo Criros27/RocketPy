@@ -1,0 +1,111 @@
+import csv
+import numpy as np
+from scipy.interpolate import interp1d
+import matplotlib.pyplot as plt
+
+"""
+CONSIGLIO DI USARE QUESTO SCRIPT IN MANIERA INDIPENDENTE
+E DI AGGIUNGERE SOLAMENTE I DATI INTERPOLATI IN 
+MINERVA-DATA PER EVITARE DI SPORCARE IL PROGRAMMA
+"""
+
+# DATI DA MODIFICARE (fino a ###)
+ 
+original_data_file_name = "CFD_Minerva.csv" #nome file da cui prendere i dati da interpolare
+saving_file_name = "Mach_cd_Minerva.csv" #nome file di salvataggio dei dati interpolati
+
+data_rows = (7,19) #inserire il range di righe da prendere dal file dati
+ind_var_column = 1 #colonna corrispondente del file dati per la variabile indipendente
+dip_var_column = 4 #colonna corrispondente del file dati per la variabile dipendente
+
+ind_var_name = "Mach" #nome variabile indipendente
+dip_var_name = "cd" #nome variabile dipendente
+
+interpolation_kind = "quadratic" #tipologia di interpolazione
+knots_number = 200 #numero dei nodi finale (post-interpolazione)
+knots_range = (0,1.2) #range dei nodi finale (post-interpolazione)
+
+###
+
+
+
+# inizializzazione liste
+array_csv = []
+ind_var = []
+dip_var = []
+ind_var_column -= 1 
+dip_var_column -= 1
+
+# format codes
+g= '\033[92m' #green
+y= '\033[93m' #yellow
+r= '\033[91m' #red
+b= '\033[96m' #blue
+reset= '\033[0m'
+
+with open(original_data_file_name) as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+        
+    for row in csv_reader:
+        array_csv.append(row)
+
+    array_data = [array_csv[i] for i in range(data_rows[0]-1,data_rows[1])]
+
+   
+for i in range(0,len(array_data)):
+
+    # replacement , with . to float the strings
+    for value in range(0,len(array_data[i])):
+        array_data[i][value] = array_data[i][value].replace(",",".")
+
+    ind_var.append(float(array_data[i][ind_var_column]))
+    dip_var.append(float(array_data[i][dip_var_column]))
+
+
+# Crea la funzione di interpolazione di tipo interpolation_kind
+interpolatore = interp1d(ind_var, dip_var, kind=interpolation_kind)
+
+# dichiara il vettore delle ascisse con i nodi che si desidera avere dopo l'interpolazione
+ind_var_interpolated = np.linspace(knots_range[0],knots_range[1],num=knots_number) 
+
+# inizializza il vettore delle ordinate
+dip_var_interpolated = np.zeros(len(ind_var_interpolated))
+
+
+for i in range(0,len(ind_var_interpolated)):
+    print(g+f"nodo numero {i+1}"+reset)
+    print(ind_var_interpolated[i])
+    print(interpolatore(ind_var_interpolated[i]))
+    dip_var_interpolated[i] = interpolatore(ind_var_interpolated[i])
+
+
+# Dati da scrivere nel file CSV
+dati = [
+    ind_var_interpolated,
+    dip_var_interpolated
+]
+
+# Nome del file CSV
+file_name = saving_file_name
+
+# Scrivi i dati nel file CSV
+with open(file_name, mode='w', newline='') as file_csv:
+    writer = csv.writer(file_csv)
+    writer.writerows(zip(*dati))
+
+
+
+# grafico non interpolato
+plt.plot(ind_var,dip_var)
+plt.xlabel(ind_var_name)
+plt.ylabel(dip_var_name)
+plt.title('Valori non interpolati')
+plt.show()
+
+# grafico non interpolato
+
+plt.plot(ind_var_interpolated,dip_var_interpolated)
+plt.xlabel(ind_var_name)
+plt.ylabel(dip_var_name)
+plt.title('Valori interpolati')
+plt.show()
