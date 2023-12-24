@@ -1,7 +1,7 @@
 
 from rocketpy import Environment, SolidMotor, Rocket, Flight
 
-env = Environment(latitude=43.63871944444445, longitude=-116.2413513485235, elevation=143)
+env = Environment(latitude=43.63871944444445, longitude=-116.2413513485235, elevation=1430)
 
 import datetime
 
@@ -127,5 +127,5 @@ test_flight.speed.plot(0, test_flight.apogee_time)
 
 test_flight.speed.source
 
-#test_flight.all_info()
+test_flight.all_info()
 test_flight.info()
